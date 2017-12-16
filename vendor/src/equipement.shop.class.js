@@ -32,6 +32,11 @@ export default class ShopEquipement extends Shop
         if(wallet.ecu >= price){
 
             parent.inventory[equipementName] = equipement;
+            for(let n in parent.inventory[equipementName]){
+                if (parent.inventory[equipementName][n] == null || parent.inventory[equipementName][n] == ""){
+                    delete parent.inventory[equipementName][n];
+                }
+            }
             parent.wallet.ecu -= price;
             console.log(parent.inventory);
             wallet.renderWallet();
@@ -50,7 +55,7 @@ export default class ShopEquipement extends Shop
 
         // Vérification des Values
         for (let value in equipement) {
-            $ivt.append('<li><br></li>');
+            $ivt.append('<li class="hvr-grow-shadow "></li>');
             if (equipement.hasOwnProperty(value)) {
                 if (equipement[value] != "id") {
                     let ivtProperty = "";
